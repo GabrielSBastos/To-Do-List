@@ -16,7 +16,9 @@ import { faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 /* add icons to the library */
 library.add(faPlusSquare, faTrash)
 
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 const app = new Vue({
     el: '#app',
-    comments: {App}
+    components: { App }
 })
