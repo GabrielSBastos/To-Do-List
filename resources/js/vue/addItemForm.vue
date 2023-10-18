@@ -1,57 +1,54 @@
 <template>
-    <div class="addItem">
-        <input type="text" v-model="item.name"/>
-        <font-awesome-icon 
-            icon="plus-square"
+    <div class="addItem" @submit.prevent="addItem">
+        <input type="text" v-model="item.name" />
+        <font-awesome-icon
             @click="addItem()"
-            :class="[item.name ? 'active' : 'inactive', 'plus']"
-            />
-        </div>
+            icon="plus-square"
+            :class="[item.name ? 'active' : 'inactive','plus']"
+        />
+    </div>
 </template>
 
 <script>
 import axios from 'axios';
 
-export default{
-    data: function(){
+export default {
+    setup: () => {
+    },
+    data: function () {
         return {
             item: {
                 name: ""
             }
         }
     },
-    methods:{
-        addItem(){
-            if(this.item.name == ''){
+    methods: {
+        addItem() {
+            if(this.item.name == ""){
                 return;
             }
-
-            axios.post{'api/item/store', {
+            axios.post('api/item/store', {
                 item: this.item
-            }}
-
-            .then(responde =>{
-                if(response.status == 201) {
+            }).then(response => {
+                if (response.status == 201) {
                     this.item.name = "";
+                    this.$emit('reloadlist');
                 }
-            })
-            .catch(error =>{
+            }).catch(error => {
                 console.log(error);
             })
         }
     }
 }
-
 </script>
-
 <style scoped>
-.addItem{
+.addItem {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-input{
+input {
     background: #f7f7f7;
     border: 0px;
     outline: none;
@@ -60,15 +57,15 @@ input{
     width: 100%;
 }
 
-.plus{
+.plus {
     font-size: 20px;
 }
 
-.active{
+.active {
     color: #00ce25;
 }
 
-.inactive{
+.inactive {
     color: #999999;
 }
 </style>
