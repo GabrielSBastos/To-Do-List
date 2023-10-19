@@ -15,7 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return Item::orderBy('created_at','DESC')->get();
+        return Item::orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -76,12 +76,11 @@ class ItemController extends Controller
     {
         $existingItem = Item::find($id);
 
-        if($existingItem){
+        if ($existingItem) {
             $existingItem->completed = $request->item['completed'] ? true : false;
-            $existingItem->completed_at = $request->item['completed'] ? Carbon::now( ) : null;
+            $existingItem->completed_at = $request->item['completed'] ? Carbon::now() : null;
             $existingItem->save();
             return $existingItem;
-
         }
 
         return "Item não encontrado";
@@ -97,7 +96,7 @@ class ItemController extends Controller
     {
         $existingItem  = Item::find($id);
 
-        if($existingItem){
+        if ($existingItem) {
             $existingItem->delete();
             return "Item apagado com sucesso";
         }
