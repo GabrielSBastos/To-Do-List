@@ -1,6 +1,7 @@
 <template>
     <div class="item">
-        <input type="checkbox">
+        <input
+            type="checkbox"
             @change="updateCheck()"
             v-model="item.completed"
             />
@@ -19,14 +20,14 @@ export default{
     props: ['item'],
     methods: {
     updateCheck(){
-        axios.put('api/item' + this.item.id,{
-        item: this.item
+        axios.put('api/item' + this.item.id, {
+            item: this.item
         })
             .then(response => {
             if(response.status == 200){
                 this.$emit('itemchanged');
-            }
-                })
+                }
+            })
             .catch(error => {
                 console.log(error);
             })

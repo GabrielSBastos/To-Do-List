@@ -2,8 +2,8 @@
     <div class="addItem" @submit.prevent="addItem">
         <input type="text" v-model="item.name" />
         <font-awesome-icon
-            @click="addItem()"
             icon="plus-square"
+            @click="addItem()"
             :class="[item.name ? 'active' : 'inactive','plus']"
         />
     </div>

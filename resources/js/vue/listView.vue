@@ -16,9 +16,12 @@ import ListItem from './listView.vue'
 
 
 export default {
-        props: ['items'],
-        comments: {
+    props: ['items'],
+    components: {
         listItem
+    },
+   mounted() {
+        console.log(this.items)
     }
 };
 </script>
@@ -26,5 +29,6 @@ export default {
 .item{
     background: #e6e6e6;
     padding: 5px;
+    margin-top: 5px;
 }
 </style>

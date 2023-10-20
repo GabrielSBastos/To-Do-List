@@ -6,16 +6,15 @@
                 v-on:reloadList="getList()"
                 />
         </div>
-        <list-view
-            :items="items"
+        <list-view :items="items"
              v-on:reloadList="getList()"/>
 
     </div>
 </template>
 
 <script>
-import addItemForm from './addItemForm.vue';
-import listView from './listView.vue';
+import addItemForm from "./addItemForm";
+import listView from "./listView";
 
 export default{
     components: {
@@ -32,10 +31,10 @@ export default{
         getList () {
             axios.get('api/items')
             .then(response => {
-                    this.item = response.data
+                    this.items = response.data
             })
             .catch(error =>{
-                console.log(error);
+                console.log( error );
             })
         }
     },
